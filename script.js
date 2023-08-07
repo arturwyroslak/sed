@@ -1,5 +1,5 @@
 // Twój klucz API OpenAI
-const OPENAI_API_KEY = 'YOUR_OPENAI_API_KEY';
+const OPENAI_API_KEY = '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';
 
 // Twój endpoint API OpenAI
 const OPENAI_API_URL = 'https://api.openai.com/v1/engines/davinci-codex/completions';
@@ -30,24 +30,34 @@ const indicators = [
     { id: 'ryzyko', prompt: 'Potencjalne ryzyko to {INPUT}. Jakie kroki powinny być podjęte, aby zarządzać tym ryzykiem?' }
 ];
 
-const container = document.getElementById('container');
+const container = document.getElementById('grid-container');
 
 indicators.forEach(indicator => {
     const card = document.createElement('div');
-    card.className = 'card';
+    card.className = 'container';
 
     const front = document.createElement('div');
-    front.className = 'front';
-    front.textContent = indicator.prompt;
+    front.className = 'frontone side';
+
+    const frontContent = document.createElement('div');
+    frontContent.className = 'content';
+    frontContent.textContent = indicator.prompt;
+
+    front.appendChild(frontContent);
 
     const back = document.createElement('div');
-    back.className = 'back';
+    back.className = 'back side';
+
+    const backContent = document.createElement('div');
+    backContent.className = 'content';
 
     const input = document.createElement('input');
     input.type = 'text';
     input.id = indicator.id;
 
-    back.appendChild(input);
+    backContent.appendChild(input);
+    back.appendChild(backContent);
+
     card.appendChild(front);
     card.appendChild(back);
     container.appendChild(card);
@@ -90,15 +100,3 @@ document.getElementById('generate-plan').addEventListener('click', async () => {
     const finalData = await finalResponse.json();
     plan.textContent = finalData.choices[0].text;
 });
-
-// Pobierz wszystkie inputy
-var inputs = document.querySelectorAll('input');
-
-// Dodaj zdarzenie kliknięcia do każdego inputa
-for (var i = 0; i < inputs.length; i++) {
-    inputs[i].addEventListener('click', function(event) {
-        // Zatrzymaj propagację zdarzenia
-        event.stopPropagation();
-    });
-}
-
