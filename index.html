@@ -278,9 +278,6 @@
 // Pobierz wszystkie kontenery
 var containers = document.querySelectorAll('.container');
 
-script>
-// Pobierz wszystkie kontenery
-var containers = document.querySelectorAll('.container');
 
 // Dodaj zdarzenie kliknięcia do każdego kontenera
 for (var i = 0; i < containers.length; i++) {
@@ -289,6 +286,15 @@ for (var i = 0; i < containers.length; i++) {
         this.classList.toggle('flipped');
     });
 }
+var inputs = document.querySelectorAll('input');
+
+// Dodaj zdarzenie kliknięcia do każdego inputa
+for (var i = 0; i < inputs.length; i++) {
+    inputs[i].addEventListener('click', function(event) {
+        // Zatrzymaj propagację zdarzenia
+        event.stopPropagation();
+    });
+}		
 
 </script>
 
