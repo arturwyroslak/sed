@@ -90,3 +90,15 @@ document.getElementById('generate-plan').addEventListener('click', async () => {
     const finalData = await finalResponse.json();
     plan.textContent = finalData.choices[0].text;
 });
+
+// Pobierz wszystkie inputy
+var inputs = document.querySelectorAll('input');
+
+// Dodaj zdarzenie kliknięcia do każdego inputa
+for (var i = 0; i < inputs.length; i++) {
+    inputs[i].addEventListener('click', function(event) {
+        // Zatrzymaj propagację zdarzenia
+        event.stopPropagation();
+    });
+}
+
